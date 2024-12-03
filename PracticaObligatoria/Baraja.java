@@ -150,6 +150,7 @@ public class Baraja {
         }
     }
 
+    // Método que devuelve la cantidad de cartas restante del mazo
     public int numCartas() {
         int restantes = 0;
         for (int i = 0; i < mazo.length; i++) {
@@ -162,6 +163,7 @@ public class Baraja {
         return restantes;
     }
 
+    // Método que devuelve las cartas restantes de la baraja
     public Carta[] getBaraja() {
         Carta[] restantes = new Carta[numCartas()];
 
@@ -178,6 +180,7 @@ public class Baraja {
         return restantes;
     }
 
+    // Método que devuelve n cartas de las cartas restastes o su total si es menor a n
     public Carta[] getBaraja(int n) {
 
         // Contamos cuantas cartas quedan en el mazo
@@ -217,6 +220,7 @@ public class Baraja {
         barajar();
     }
 
+    // Método toString que devuelve las cartas divididas por un espacio y una coma
     public String toString() {
         String resultado = "";
 

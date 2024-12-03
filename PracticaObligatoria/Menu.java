@@ -6,8 +6,8 @@ public class Menu {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        boolean salir = false;
-        int opc = -1;
+        // boolean salir = false;
+        // int opc = -1;
 
         Baraja b = new Baraja(1);
 

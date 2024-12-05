@@ -37,22 +37,41 @@ public class Blackjack {
 
         Carta c = b.siguiente(); // Llamamos a la clase Carta
 
+
+
         System.out.println("Bienvenido " + jugador + ", aquí empieza tu desafio.");
         puntos = c.getValor();
         System.out.println(c.getValor());  // Obtenemos el valor de la carta que ha tocado y la sumamos a los puntos
 
         System.out.println("Has sacado un " + c);
 
-        if (c.getValor() > 21) {
+        if (puntos > 21) {
             System.out.println("Has perdido, te has pasado de 21.");
         }
 
-        if (c.getValor() == 21) {
+        if (puntos == 21) {
             System.out.println("¡¡Has ganado!!");
         }
 
-        if (c.getValor() < 21) {
-            System.out.println("¿Deseas sacar otra carta?");
+        while (!stop && puntos < 21) {
+            System.out.println("PUNTUACIÓN: " + puntos);
+            System.out.println("¿Quieres sacar otra carta? (s/n)");
+            String respuesta = sc.next();
+
+            // Si decide "s", se planta y sale del bucle
+            if (respuesta.equals("s")) {
+                c = b.siguiente();
+                puntos += c.getValor();
+
+                System.out.println("Has sacado un " + c);
+
+                if (puntos > 21) {
+                    System.out.println("Te has pasado de 21 puntos, has perdido.");
+                }
+            } else {
+                stop = true;
+                System.out.println("Te has plantado con " + puntos + " puntos.");
+            }
         }
 
 

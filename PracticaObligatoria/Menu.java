@@ -9,6 +9,7 @@ public class Menu {
         // boolean salir = false;
         // int opc = -1;
         SieteYMedia s1 = new SieteYMedia(1);
+        Blackjack b1 = new Blackjack(1);
         Baraja b = new Baraja(1);
 
         b.barajar();
@@ -23,7 +24,7 @@ public class Menu {
         System.out.println("-----------------");
         System.out.println(b.toString());
 
-        s1.jugar();
+        b1.jugar();
 
         /*
          * while (!salir) {

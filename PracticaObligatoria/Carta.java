@@ -84,9 +84,23 @@ public class Carta {
     // Método para saber si una carta es mayor que otra
     public boolean mayorQue(Carta c) {
         boolean mayor = false;
+    
+        // Comparar primero los valores
         if (this.valor > c.getValor()) {
             mayor = true;
+        } else if (this.valor < c.getValor()) {
+            mayor = false;
+        } else {
+            // Si los valores son iguales, comparar los palos
+            if (this.palo.equals("OROS")) {
+                mayor = true;
+            } else if (this.palo.equals("COPAS") && !c.palo.equals("OROS")) {
+                mayor = true;
+            } else if (this.palo.equals("ESPADAS") && !c.palo.equals("OROS") && !c.palo.equals("COPAS")) {
+                mayor = true;
+            }
         }
+    
         return mayor;
     }
 }

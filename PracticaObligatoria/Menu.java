@@ -8,7 +8,7 @@ public class Menu {
 
         // boolean salir = false;
         // int opc = -1;
-
+        SieteYMedia s1 = new SieteYMedia(1);
         Baraja b = new Baraja(1);
 
         b.barajar();
@@ -19,8 +19,11 @@ public class Menu {
         b.reiniciar();
 
         b.mostrarBaraja();
+        System.out.println(b.siguiente());
         System.out.println("-----------------");
         System.out.println(b.toString());
+
+        s1.jugar();
 
         /*
          * while (!salir) {

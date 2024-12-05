@@ -60,19 +60,17 @@ public class SieteYMedia {
 
         // Variables del método
         boolean stop = false;
-        boolean perdido = false;
 
-        Carta carta = b.siguiente(); // Llamamos a la clase Carta
+        Carta c = b.siguiente(); // Llamamos a la clase Carta
 
-        puntos[turno] = carta.getValor();  // Obtenemos el valor de la carta que ha tocado y la sumamos a los puntos
+        puntos[turno] = c.getValor();
+        System.out.println(c.getValor());  // Obtenemos el valor de la carta que ha tocado y la sumamos a los puntos
 
-        System.out.println("Has sacado un " + carta);
+        System.out.println("Has sacado un " + c);
 
         // Bucle para saber si pierde durante su turno un jugador
-        do {
             if (puntos[turno] > 7.5) { // Si saca mayor de 7.5, pierde
                 System.out.println("Te has pasado de 7.5 puntos, has perdido.");
-                perdido = true;
             }
             
             // Mientras que no se planta el jugador o no supera 7.5 puntos puede seguir sacando cartas
@@ -83,21 +81,19 @@ public class SieteYMedia {
     
                 // Si decide "s", se planta y sale del bucle
                 if (respuesta.equals("s")) {
-                    carta = b.siguiente();
-                    puntos[turno] += carta.getValor();
+                    c = b.siguiente();
+                    puntos[turno] += c.getValor();
     
-                    System.out.println("Has sacado un " + carta);
+                    System.out.println("Has sacado un " + c);
     
                     if (puntos[turno] > 7.5) {
                         System.out.println("Te has pasado de 7.5 puntos, has perdido.");
-                    perdido = true;
                     }
                 } else {
                     stop = true;
                     System.out.println("Te has plantado con " + puntos[turno]);
                 }
             }
-        } while (!perdido || stop);
 
     sc.close();
     }

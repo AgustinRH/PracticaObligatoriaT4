@@ -82,14 +82,14 @@ public class Baraja {
 
             // Si es de póker, el mazo tiene 12 cartas
             if (tipo == 1) {
-                col = (int) ((Math.random() * 13));
-                col2 = (int) ((Math.random() * 13));
+                col = (int) ((Math.random() * 12)+ 1);
+                col2 = (int) ((Math.random() * 12)+ 1);
                 mazoBarajado = new Carta[13];
             }
             // Si es española, el mazo tiene 10 cartas
             else {
-                col = (int) ((Math.random() * 10));
-                col2 = (int) ((Math.random() * 10));
+                col = (int) ((Math.random() * 10) + 1);
+                col2 = (int) ((Math.random() * 10) + 1);
                 mazoBarajado = new Carta[10];
             }
 
@@ -102,7 +102,7 @@ public class Baraja {
 
         }
 
-        // Inicializamos la siguiente carta a sacar
+        // Guardamks la siguiente carta a sacar
         next = obtenerSiguienteCarta();
     }
 

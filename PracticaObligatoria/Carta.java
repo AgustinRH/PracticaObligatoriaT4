@@ -53,7 +53,37 @@ public class Carta {
 
     // Devuelve un String del valor y el palo de la carta.
     public String toString() {
-        return valor + " de " + palo;
+        String toString = "";
+        
+        if (valor == 1 && tipo == 1) {
+            toString = "AS de " + palo;
+        }
+        if (valor == 11 && tipo == 1) {
+            toString = "J de " + palo; 
+        }
+        if (valor == 12 && tipo == 1) {
+            toString = "Q de " + palo;
+        }
+        if (valor == 13 && tipo == 1) {
+            toString = "K de " + palo;
+        }
+        if (valor == 8 && tipo == 2) {
+            toString = "SOTA de " + palo;
+        }
+        if (valor == 9 && tipo == 2) {
+            toString = "CABALLO de " + palo;
+        }
+        if (valor == 8 && tipo == 2) {
+            toString = "REY de " + palo;
+        }
+        if (valor == 2 && tipo == 2 || valor == 3 && tipo == 2 || valor == 4 && tipo == 2 || valor == 5 && tipo == 2 || valor == 6 && tipo == 2 ||valor == 7 && tipo == 2){
+            toString = valor + " de " + palo;
+        }
+        if (valor == 2 && tipo == 1 || valor == 3 && tipo == 1 || valor == 4 && tipo == 1 || valor == 5 && tipo == 1 || valor == 6 && tipo == 1 ||valor == 7 && tipo == 1 || valor == 8 && tipo == 1|| valor == 9 && tipo == 1|| valor == 10 && tipo == 1){
+            toString = valor + " de " + palo;
+        }
+
+        return toString;
     }
 
     // Método para comparar cartas

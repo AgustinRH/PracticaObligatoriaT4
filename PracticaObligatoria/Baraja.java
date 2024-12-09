@@ -217,7 +217,6 @@ public class Baraja {
     public void reiniciar() {
 
         generarMazo();
-        barajar();
     }
 
     // Método toString que devuelve las cartas divididas por un espacio y una coma

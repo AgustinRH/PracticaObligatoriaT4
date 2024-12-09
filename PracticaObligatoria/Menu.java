@@ -7,14 +7,14 @@ public class Menu {
         Scanner sc = new Scanner(System.in);
         boolean bienvenida = true;
         int tipo = 0, opc = 0;
-        Baraja b = null;       
+        Baraja b = null;
         while (opc != 3) {
             System.out.println("BIENVENIDO!! \n Elige un menú...");
             System.out.println("1. Menú de Baraja.");
             System.out.println("2. Menú de Juegos.");
             System.out.println("3. Salir...");
             opc = sc.nextInt();
-    
+
             switch (opc) {
                 case 1:
                     System.out.println("1. CREAR MAZO");
@@ -29,14 +29,13 @@ public class Menu {
                         case 1:
                             System.out.println("Dime el tipo (1. Póker | 2. Española)");
                             tipo = sc.nextInt();
-    
+
                             b = new Baraja(tipo);
                             break;
                         case 2:
                             if (b != null) {
                                 b.barajar();
-                            }
-                            else {
+                            } else {
                                 System.out.println("No es posible barajar algo que no existe...");
                             }
                             break;
@@ -67,11 +66,26 @@ public class Menu {
                             b.reiniciar();
                             break;
                         default:
-                        System.out.println("Error al elegir una opción correcta...");
+                            System.out.println("Error al elegir una opción correcta...");
                             break;
                     }
                     break;
-    
+                case 2:
+                SieteYMedia s;
+                    System.out.println("Elige que mazo quieres usar:");
+                    int opcTipo = sc.nextInt();
+                    switch (tipo) {
+                        case 1:
+                            s = new SieteYMedia(opcTipo);
+                            break;
+                        case 2:
+                            s = new SieteYMedia(opcTipo);
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+
                 default:
                     break;
             }

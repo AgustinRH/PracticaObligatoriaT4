@@ -95,7 +95,6 @@ public class SieteYMedia {
                 }
             }
 
-    sc.close();
     }
 
     // Método para saber el ganador

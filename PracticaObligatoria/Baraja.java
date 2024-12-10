@@ -66,79 +66,52 @@ public class Baraja {
                 }
             }
         }
-        // Guardamos la cara que va a salir
-        next = obtenerSiguienteCarta();
     }
 
     // Método para barajar el mazo
     public void barajar() {
         // Variables del metodo barajar
         int fil, col, fil2, col2;
-
+    
         // Bucle que mezcla las cartas
         for (int i = 0; i < 60; i++) {
-            fil = (int) ((Math.random() * 4));
-            fil2 = (int) ((Math.random() * 4));
-
-            // Si es de póker, el mazo tiene 12 cartas
+            fil = (int) (Math.random() * 4);
+            fil2 = (int) (Math.random() * 4);
+    
+            // Si es de póker, el mazo tiene 13 cartas
             if (tipo == 1) {
-                col = (int) ((Math.random() * 12)+ 1);
-                col2 = (int) ((Math.random() * 12)+ 1);
-                mazoBarajado = new Carta[13];
+                col = (int) (Math.random() * 13); // Cambiado a 13
+                col2 = (int) (Math.random() * 13); // Cambiado a 13
             }
             // Si es española, el mazo tiene 10 cartas
             else {
-                col = (int) ((Math.random() * 10) + 1);
-                col2 = (int) ((Math.random() * 10) + 1);
-                mazoBarajado = new Carta[10];
+                col = (int) (Math.random() * 10);
+                col2 = (int) (Math.random() * 10);
             }
-
+    
             // Cambiamos posiciones entre cartas de forma aleatoria
             Carta aux = mazo[fil][col];
-
             mazo[fil][col] = mazo[fil2][col2];
-
             mazo[fil2][col2] = aux;
-
         }
-
-        // Guardamks la siguiente carta a sacar
-        next = obtenerSiguienteCarta();
     }
 
     // Método para obtener la siguiente carta a sacar
-    private Carta obtenerSiguienteCarta() {
+    public Carta siguiente() {
         // Buscamos la siguiente carta
         for (int i = 0; i < mazo.length; i++) {
             for (int j = 0; j < mazo[i].length; j++) {
                 if (mazo[i][j] != null) {
-                    // Guardamos la siguiente carta
+                    // Guardamos la carta a sacar
                     Carta carta = mazo[i][j];
                     mazo[i][j] = null; // Quitamos la carta del mazo
-                    return carta;
+                    return carta; // Devolvemos la carta sacada
                 }
             }
         }
-
-        // Si no quedan cartas devolvemos null
+    
+        // Si no quedan cartas, devolvemos null
         return null;
-    }
-
-    // Sacamos la siguiente carta
-    public Carta siguiente() {
-        // Si no quedan cartas devolvemos null
-        if (next == null) {
-            return null;
-        }
-
-        // Guardamos la siguiente carta para sacarla
-        Carta cartaASacar = next;
-
-        // Guardamos la próxima carta
-        next = obtenerSiguienteCarta();
-
-        // Devolvemos la carta sacada
-        return cartaASacar;
     }
 
     // Método para mostrar la baraja completa
@@ -217,6 +190,7 @@ public class Baraja {
     public void reiniciar() {
 
         generarMazo();
+        barajar();
     }
 
     // Método toString que devuelve las cartas divididas por un espacio y una coma
@@ -237,6 +211,6 @@ public class Baraja {
             }
         }
 
-        return resultado; // Devolver la cadena resultante
+        return resultado; // Devolvemos el resultado
     }
 }

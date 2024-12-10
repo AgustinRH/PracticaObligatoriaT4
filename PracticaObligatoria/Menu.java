@@ -5,95 +5,88 @@ import java.util.Scanner;
 public class Menu {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int tipo = 0, opc = 0;
-        boolean opcion = true;
+        int opc = -1;
         Baraja b = null;
+        int opcionbaraja = -1;
+        int tipoBaraja = -1;
 
-        while (opc != 3) {
-            System.out.println("BIENVENIDO!! \n Elige un menú...");
-            System.out.println("1. Menú de Baraja.");
-            System.out.println("2. Menú de Juegos.");
-            System.out.println("3. Salir...");
-            opc = sc.nextInt();
+        while (opc != 0) {
+            System.out.println("MENÚ PRINCIPAL");
+            System.out.println("----------------------");
+            System.out.println("1. Crear una baraja.");
+            System.out.println("2. Mostrar baraja.");
+            System.out.println("3. Sacar cartas.");
+            System.out.println("4. Barajar.");
+            System.out.println("5. Jugar");
+            System.out.println("0. Salir del programa.");
+            try {
+                opc = sc.nextInt();
+            } catch (Exception e) {
+                System.out.println("Error al elegir una opción...");
+                sc.next();
+            }
 
             switch (opc) {
                 case 1:
-                    while (opcion) {
-                        System.out.println("1. CREAR MAZO");
-                        System.out.println("2. BARAJAR MAZO");
-                        System.out.println("3. MOSTRAR MAZO");
-                        System.out.println("4. SACAR CARTA");
-                        System.out.println("5. SACAR NÚMERO DE CARTAS");
-                        System.out.println("6. NÚMERO DE CARTAS RESTANTES");
-                        System.out.println("7. REINICIAR");
-                        System.out.println("8. SALIR...");
-                        int option = sc.nextInt();
-                        switch (option) {
-                            case 1:
-                                System.out.println("Dime el tipo (1. Póker | 2. Española)");
-                                tipo = sc.nextInt();
+                    while (opcionbaraja != 0) {
+                        System.out.println("MENÚ DE BARAJAS");
+                        System.out.println("1. Crear una baraja de poker.");
+                        System.out.println("2. Crear una baraja española.");
+                        System.out.println("0. Volver al menú principal.");
+                        try {
+                            opcionbaraja = sc.nextInt();
+                        } catch (Exception e) {
+                            System.out.println("Error al elegir una opción del menú de baraja");
+                            sc.next(); // Limpiar el buffer
+                        }
 
-                                b = new Baraja(tipo);
+                        switch (opcionbaraja) {
+                            case 1:
+                                b = new Baraja(1);
+                                tipoBaraja = 1;
+                                opcionbaraja = 0;
                                 break;
                             case 2:
-                                if (b != null) {
-                                    b.barajar();
-                                } else {
-                                    System.out.println("No es posible barajar algo que no existe...");
-                                }
+                                b = new Baraja(2);
+                                tipoBaraja = 2; 
+                                opcionbaraja = 0;
                                 break;
-                            case 3:
-                                if (b != null) {
-                                    b.toString();
-                                }
-                                break;
-                            case 4:
-                                if (b != null) {
-                                    b.siguiente();
-                                    System.out.println();
-                                }
-                                break;
-                            case 5:
-                                if (b != null) {
-                                    System.out.println("Dime cuantas cartas quieres sacar: ");
-                                    int cartas = sc.nextInt();
-                                    b.getBaraja(cartas);
-                                }
-                                break;
-                            case 6:
-                                if (b != null) {
-                                    b.getBaraja();
-                                }
-                                break;
-                            case 7:
-                                b.reiniciar();
-                                break;
-                            case 8:
+                            case 0:
                                 System.out.println("Saliendo...");
-                                opcion = false;
                                 break;
                             default:
-                                System.out.println("Error al elegir una opción correcta...");
                                 break;
                         }
-                        break;
                     }
+                    break;
                 case 2:
-                    SieteYMedia s;
-                    System.out.println("Elige que mazo quieres usar:");
-                    int opcTipo = sc.nextInt();
-                    switch (tipo) {
-                        case 1:
-                            s = new SieteYMedia(opcTipo);
-                            s.jugar();
-                            break;
-                        case 2:
-                            s = new SieteYMedia(opcTipo);
-                            s.jugar();
-                            break;
-                        default:
-                            System.out.println("Mazo incorrecto");
-                            break;
+                    if (b != null) {
+                        System.out.println(b.toString());
+                    } else {
+                        System.out.println("No hay baraja creada.");
+                    }
+                    break;
+                case 3:
+                    if (b != null) {
+                        System.out.println(b.siguiente());
+                    } else {
+                        System.out.println("No hay baraja creada.");
+                    }
+                    break;
+                case 4:
+                    if (b != null) {
+                        b.barajar();
+                        System.out.println("Barajado");
+                    } else {
+                        System.out.println("No se ha podido barajar ya que no hay cartas...");
+                    }
+                    break;
+                case 5:
+                    if (b != null) {
+                        SieteYMedia s = new SieteYMedia(tipoBaraja); 
+                        s.jugar();
+                    } else {
+                        System.out.println("No hay baraja creada. Crea una baraja primero.");
                     }
                     break;
                 default:

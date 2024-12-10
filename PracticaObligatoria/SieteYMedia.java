@@ -22,15 +22,20 @@ public class SieteYMedia {
 
         System.out.println("Bienvenido al juego de Siete y Media");
 
-        System.out.println("Introduce el número de jugadores: ");
+        // Inicializa numJugadores a 0
+        numJugadores = 0;
+
+        System.out.println("Introduce el número de jugadores (mínimo 2): ");
         while (numJugadores < 2) {
             try {
                 numJugadores = sc.nextInt();
+                if (numJugadores < 2) {
+                    System.out.println("Recuarda... Mínimo 2 personas para jugar");
+                }
             } catch (Exception e) {
-                System.out.println("Error al introducir el valor de jugadores");
+                System.out.println("Error al introducir el valor de jugadores. Intenta de nuevo.");
+                sc.next(); // Limpiar el buffer
             }
-
-            System.out.println("Recuarda... Mínimo 2 personas para jugar");
         }
 
         jugadores = new String[numJugadores];
@@ -48,16 +53,12 @@ public class SieteYMedia {
 
         ganador();
 
-
-
-
         sc.close();
-    }   
+    }
 
     // Método paraa jugar cada turno de cada jugador
     private void jugarTurno(int turno){
-        Scanner sc = new Scanner(System.in);
-
+        Scanner sc2 = new Scanner(System.in);
         // Variables del método
         boolean stop = false;
 
@@ -77,7 +78,7 @@ public class SieteYMedia {
             while (!stop && puntos[turno] <= 7.5) {
                 System.out.println("PUNTUACIÓN: " + puntos[turno]);
                 System.out.println("¿Quieres sacar otra carta? (s/n)");
-                String respuesta = sc.next();
+                String respuesta = sc2.next();
     
                 // Si decide "s", se planta y sale del bucle
                 if (respuesta.equals("s")) {
@@ -98,23 +99,23 @@ public class SieteYMedia {
     }
 
     // Método para saber el ganador
-    private void ganador(){
+    private void ganador() {
         double maxPuntos = 0;
         int ganador = -1;
 
         // Bucle para saber que jugador tiene la mayor puntuación
         for (int i = 0; i < jugadores.length; i++) {
-            if (puntos[i]<= 7.5 && puntos[i] > maxPuntos) {
+            if (puntos[i] <= 7.5 && puntos[i] > maxPuntos) {
                 maxPuntos = puntos[i];
-                ganador = i; 
+                ganador = i;
             }
         }
 
-        // Comprobamos que algún jugador no ha perdido y tiene un mínimo de puntuación para poder ganar
+        // Comprobamos que algún jugador no ha perdido y tiene un mínimo de puntuación
+        // para poder ganar
         if (ganador != -1) {
             System.out.println("\n El ganador es " + jugadores[ganador] + " con " + puntos[ganador]);
-        }
-        else {
+        } else {
             System.out.println("Todos los jugadores han perdido");
         }
     }

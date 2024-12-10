@@ -85,6 +85,7 @@ public class Menu {
                     if (b != null) {
                         SieteYMedia s = new SieteYMedia(tipoBaraja); 
                         s.jugar();
+                        sc.next();
                     } else {
                         System.out.println("No hay baraja creada. Crea una baraja primero.");
                     }

@@ -2,12 +2,10 @@ package PracticaObligatoria;
 
 public class Baraja {
 
-    // Variables para la clase baraja
+    // Variables de la clase baraja
     private int tipo;
     private String palo;
-    Carta mazo[][];
-    Carta mazoBarajado[];
-    Carta next;
+    private Carta mazo[][];
 
     // Creamos el objeto Baraja
     public Baraja(int tipo) {

@@ -26,6 +26,7 @@ public class Menu {
                 opc = sc.nextInt();
             } catch (Exception e) {
                 System.out.println("Error al escoger una opción.");
+                sc.nextLine(); // Limpia el buffer
             }
 
             switch (opc) {
@@ -39,7 +40,7 @@ public class Menu {
                             opcionbaraja = sc.nextInt();
                         } catch (Exception e) {
                             System.out.println("Error al elegir una opción del menú de baraja");
-                            sc.nextLine(); // Limpia el buffer
+                            sc.nextLine();
                         }
 
                         switch (opcionbaraja) {
@@ -85,13 +86,19 @@ public class Menu {
                     break;
                 case 5: // Juega al juego Siete y Media
                     if (b != null) {
+                        if (tipoBaraja == 2 ) {
                         SieteYMedia s = new SieteYMedia(tipoBaraja); 
                         s.jugar();
+                        }
+                        else {
+                            System.out.println("No puedes jugar con cartas de póker, debes crear una baraja Española...");
+                        }
                     } else {
                         System.out.println("No hay baraja creada. Crea una baraja primero.");
                     }
                     break;
                 default:
+                System.out.println("Opción no válida.");
                     break;
             }
         }

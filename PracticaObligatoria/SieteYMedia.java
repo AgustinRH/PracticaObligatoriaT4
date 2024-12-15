@@ -61,13 +61,14 @@ public class SieteYMedia {
         Scanner sc2 = new Scanner(System.in);
         // Variables del método
         boolean stop = false;
+        String respuesta = "";
 
         Carta c = b.siguiente(); // Llamamos a la clase Carta
 
         puntos[turno] = c.getValor();
         System.out.println(c.getValor());  // Obtenemos el valor de la carta que ha tocado y la sumamos a los puntos
 
-        System.out.println("Has sacado un " + c);
+        System.out.println("Has sacado un " + c.toString());
 
         // Bucle para saber si pierde durante su turno un jugador
             if (puntos[turno] > 7.5) { // Si saca mayor de 7.5, pierde
@@ -78,21 +79,29 @@ public class SieteYMedia {
             while (!stop && puntos[turno] <= 7.5) {
                 System.out.println("PUNTUACIÓN: " + puntos[turno]);
                 System.out.println("¿Quieres sacar otra carta? (s/n)");
-                String respuesta = sc2.next();
+                try {
+                    respuesta = sc2.next();
+                } catch (Exception e) {
+                    System.out.println("Error al sacar una carta, valor no reconocido");
+                    sc2.nextLine();
+                }
     
                 // Si decide "s", se planta y sale del bucle
                 if (respuesta.equals("s")) {
                     c = b.siguiente();
                     puntos[turno] += c.getValor();
     
-                    System.out.println("Has sacado un " + c);
+                    System.out.println("Has sacado un " + c.toString());
     
                     if (puntos[turno] > 7.5) {
                         System.out.println("Te has pasado de 7.5 puntos, has perdido.");
                     }
-                } else {
+                } else if (respuesta.equals("n")){
                     stop = true;
                     System.out.println("Te has plantado con " + puntos[turno]);
+                }
+                else {
+                    System.out.println("Error al validar una respuesta");
                 }
             }
         

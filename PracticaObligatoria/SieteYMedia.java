@@ -51,9 +51,9 @@ public class SieteYMedia {
             jugarTurno(i);
         }
 
-        ganador();
+        ganador(); // Llamamos al método para descubrir al jugador que ha ganado
 
-        sc.close();
+        sc.nextLine();
     }
 
     // Método paraa jugar cada turno de cada jugador
@@ -95,7 +95,7 @@ public class SieteYMedia {
                     System.out.println("Te has plantado con " + puntos[turno]);
                 }
             }
-
+        
     }
 
     // Método para saber el ganador
